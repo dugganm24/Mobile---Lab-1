@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 private const val TAG = "QuizViewModel"
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
-const val IS_CHEATER_KEY = "IS_CHEATER_KEY"
+//const val IS_CHEATER_KEY = "IS_CHEATER_KEY" no longer need global flag
 
 class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
@@ -21,10 +21,12 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         Question(R.string.question_americas, true),
         Question(R.string.question_asia, true)
     )
+    private val cheatedQuestions = MutableList(questionBank.size) {false}
+    //track if question was cheated
 
-    var isCheater: Boolean
-        get() = savedStateHandle.get(IS_CHEATER_KEY) ?: false
-        set(value) = savedStateHandle.set(IS_CHEATER_KEY, value)
+//    var isCheater: Boolean
+//        get() = savedStateHandle.get(IS_CHEATER_KEY) ?: false
+//        set(value) = savedStateHandle.set(IS_CHEATER_KEY, value)
 
     val currentQuestionAnswer: Boolean
         get() = questionBank[currentIndex].answer
@@ -35,4 +37,13 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
     fun moveToNext() {
         currentIndex = (currentIndex + 1) % questionBank.size
     }
+
+    fun markCurrentQuestionAsCheated() {  //called by main activity after cheating
+        cheatedQuestions[currentIndex] = true
+    }
+
+    val currentQuestionCheated: Boolean  //main activity uses to check if user cheated on current question
+        get() = cheatedQuestions[currentIndex]
+
 }
+

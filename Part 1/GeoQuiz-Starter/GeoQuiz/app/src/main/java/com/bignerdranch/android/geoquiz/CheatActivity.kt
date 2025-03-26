@@ -16,6 +16,7 @@ class CheatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheatBinding
 
     private var answerIsTrue = false
+    private var isAnswerShown = false //Track is answer is shown default false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +24,37 @@ class CheatActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         answerIsTrue = intent.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false)
+        isAnswerShown = savedInstanceState?.getBoolean(EXTRA_ANSWER_SHOWN, false) ?: false
+        //save isAnswerShown state for screen rotation
+
+        //Show answer again if the user cheated and phone rotates
+        if (isAnswerShown){
+            showAnswer()
+            setAnswerShownResult(true)
+        }
 
         binding.showAnswerButton.setOnClickListener {
             val answerText = when {
                 answerIsTrue -> R.string.true_button
                 else -> R.string.false_button
             }
+            showAnswer() //added show answer to persist
+            isAnswerShown = true //show if cheat show is pressed
             binding.answerTextView.setText(answerText)
             setAnswerShownResult(true)
         }
+    }
+
+    // Save isAnswershown for screen rotation
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(EXTRA_ANSWER_SHOWN, isAnswerShown) //save isAnswerShown for rotation
+    }
+
+    // Show answer logic
+    private fun showAnswer() {
+        val answerText = if (answerIsTrue) R.string.true_button else R.string.false_button
+        binding.answerTextView.setText(answerText)
     }
 
     private fun setAnswerShownResult(isAnswerShown: Boolean) {

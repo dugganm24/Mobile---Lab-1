@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     ) { result ->
         // Handle the result
         if (result.resultCode == Activity.RESULT_OK) {
-            quizViewModel.isCheater =
-                result.data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
+            quizViewModel.markCurrentQuestionAsCheated()
+        //update with markCurrentQuestionCheated flag
         }
     }
 
@@ -87,10 +87,11 @@ class MainActivity : AppCompatActivity() {
         binding.questionTextView.setText(questionTextResId)
     }
 
+    //updated with CurrentQuestionCheated flag
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = quizViewModel.currentQuestionAnswer
         val messageResId = when {
-            quizViewModel.isCheater -> R.string.judgment_toast
+            quizViewModel.currentQuestionCheated -> R.string.judgment_toast
             userAnswer == correctAnswer -> R.string.correct_toast
             else -> R.string.incorrect_toast
         }

@@ -22,7 +22,7 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         Question(R.string.question_asia, true)
     )
     private val cheatedQuestions = MutableList(questionBank.size) {false}
-    //track if question was cheated
+    //added list to track if question was cheated
 
 //    var isCheater: Boolean
 //        get() = savedStateHandle.get(IS_CHEATER_KEY) ?: false
@@ -38,11 +38,11 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         currentIndex = (currentIndex + 1) % questionBank.size
     }
 
-    fun markCurrentQuestionAsCheated() {  //called by main activity after cheating
+    fun markCurrentQuestionAsCheated() {  //called by main activity to mark the current question as cheated
         cheatedQuestions[currentIndex] = true
     }
 
-    val currentQuestionCheated: Boolean  //main activity uses to check if user cheated on current question
+    val currentQuestionCheated: Boolean  //main activity uses to check cheat status of current question
         get() = cheatedQuestions[currentIndex]
 
 }

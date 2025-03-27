@@ -45,13 +45,13 @@ class CheatActivity : AppCompatActivity() {
         }
     }
 
-    // Save isAnswershown for screen rotation
+    // Lifecycle callback Save isAnswershown across process death and config changes
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(EXTRA_ANSWER_SHOWN, isAnswerShown) //save isAnswerShown for rotation
     }
 
-    // Show answer logic
+    // Helper function for show answer logic
     private fun showAnswer() {
         val answerText = if (answerIsTrue) R.string.true_button else R.string.false_button
         binding.answerTextView.setText(answerText)

@@ -1,5 +1,7 @@
 # Part 1: The GeoQuiz Challenges
 
+#VOICE OVER FOR THIS PART IS IN THE APP DIRECTORY AS:
+
 ## Group Members
 - William Tyrrell - wftyrrell@wpi.edu
 - Michael Duggan - mpduggan@wpi.edu

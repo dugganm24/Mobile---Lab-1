@@ -1,12 +1,13 @@
 # Part 1: The GeoQuiz Challenges
 
+
 #VOICE OVER FOR THIS PART IS IN THE APP DIRECTORY AS: `2025-03-27 09-42-54.mkv`
 
 ## Group Members
 - William Tyrrell - wftyrrell@wpi.edu
 - Michael Duggan - mpduggan@wpi.edu
 
-## App Description
+## Lab Goal
 This project extends the functionality of the GeoQuiz app by implementing two new features:
 
 ---
@@ -18,6 +19,7 @@ In the original app, users could rotate the screen after cheating to reset the a
 "cheating is wrong" message
 
 **Solution:**  
+Code is located at: `Part 1/GeoQuiz-Starter/GeoQuiz/sourceCode/app/src/main/java/com/bignerdranch/android/geoquiz`
 We fixed this by editing CheatActivity.kt with these changes:
 - Adding a variable `isAnswerShown` to track whether the answer has been shown
 - Using `onSaveInstanceState()` and `savedInstanceState` to save and restore this value during activity recreation
@@ -32,7 +34,8 @@ This ensures that once a user cheats, they cannot hide that action by rotating o
 **Problem:**  
 In the original app, once a user cheated the "Cheating is wrong" message would appear for all questions even if they didn’t cheat again.
 
-**Solution:**  
+**Solution:**
+Code is located at: `Part 1/GeoQuiz-Starter/GeoQuiz/sourceCode/app/src/main/java/com/bignerdranch/android/geoquiz`
 - We replaced the single `isCheater` flag with a `cheatedQuestions` list in QuizViewModel where each element tracks whether the user cheated on that specific question index.
 - Updated MainActivity to call `markCurrentQuestionAsCheated()` from QuizViewModel.kt after the user cheats.
 - Modified the `checkAnswer()` logic to show the “Cheating is wrong” toast only if the user cheated on the current question using the `currentQuestionCheated` flag from QuizViewModel.kt.

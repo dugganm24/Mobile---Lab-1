@@ -16,7 +16,7 @@ class CheatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheatBinding
 
     private var answerIsTrue = false
-    private var isAnswerShown = false //Track is answer is shown default false
+    private var isAnswerShown = false //Track if answer is shown default false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

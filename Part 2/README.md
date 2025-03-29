@@ -1,6 +1,6 @@
 __Team Information__
 
-**Member**        **Email**
+**Member**                 **Email**
 
 Michael Duggan    mpduggan@wpi.edu
 

@@ -1,10 +1,9 @@
 __Team Information__
 
-**Member**                 **Email**
-
-Michael Duggan    mpduggan@wpi.edu
-
-William Tyrrell   wftyrrell@wpi.edu
+Member | Email
+-------|-------
+Michael Duggan | mpduggan@wpi.edu
+William Tyrrell | wftyrrell@wpi.edu
 
 __Lab 1 Part 2 - Overview__
 
